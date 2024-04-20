@@ -10,10 +10,10 @@ using System.Web.Http.Cors;
 namespace RoleBasedBasicAuthenticationWEBAPI.Controllers
 {
     //[EnableCorsAttribute("*", "*", "*")]
-    [BasicAuthentication]
+    //[BasicAuthentication]
     public class EmployeeController : ApiController
     {
-        [BasicAuthentication]
+        //[BasicAuthentication]
         [MyAuthorize(Roles = "Admin")]
         [Route("api/AllMaleEmployees")]
         public HttpResponseMessage GetAllMaleEmployees()

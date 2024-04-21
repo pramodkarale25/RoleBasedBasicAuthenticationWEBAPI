@@ -34,12 +34,18 @@ namespace RoleBasedBasicAuthenticationWEBAPI.Models
 
                 if (UserValidate.Login(username, password))//we are doing basic authentication
                 {
+                    //following lines are for only basic authentication and GetEmployees method.
+                    //GenericIdentity identity = new GenericIdentity(username);
+                    //IPrincipal principal = new GenericPrincipal(identity, null);
+
                     //following lines added for role based authetication.
                     User UserDetails = UserValidate.GetUserDetails(username, password);
                     GenericIdentity identity = new GenericIdentity(username);
                     identity.AddClaim(new Claim("Email", UserDetails.Email));
                     identity.AddClaim(new Claim(ClaimTypes.Name, UserDetails.UserName));
                     identity.AddClaim(new Claim("ID", Convert.ToString(UserDetails.ID)));
+
+                    //following are generic lines.
                     IPrincipal principal = new GenericPrincipal(identity, UserDetails.Roles.Split(','));
                     Thread.CurrentPrincipal = principal;
 

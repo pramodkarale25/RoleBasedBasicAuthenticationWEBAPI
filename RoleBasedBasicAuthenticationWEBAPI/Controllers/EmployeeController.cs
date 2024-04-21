@@ -9,8 +9,9 @@ using System.Web.Http.Cors;
 
 namespace RoleBasedBasicAuthenticationWEBAPI.Controllers
 {
-    //[EnableCorsAttribute("*", "*", "*")]
+    //[EnableCors("*", "*", "*")]
     //[BasicAuthentication]
+    //[MyAuthorize]
     public class EmployeeController : ApiController
     {
         //[BasicAuthentication]
@@ -57,7 +58,7 @@ namespace RoleBasedBasicAuthenticationWEBAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, EmpList);
         }
 
-        [MyAuthorize(Roles = "Admin,Superadmin")]
+        //basic authentication example - no need to apply myauthorize attribute
         [Route("api/Employees")]
         public HttpResponseMessage GetEmployees()
         {
